@@ -49,8 +49,8 @@ export default function Layout({ children }: LayoutProps): ReactElement {
   return (
     <Configuration icons={icons}>
       <RMDLayout
-        title="Main Title"
-        navHeaderTitle="Navigation Header Title"
+        title="Denis Declercq"
+        navHeaderTitle="Menu"
         tabletLayout="temporary"
         landscapeTabletLayout="temporary"
         desktopLayout="temporary"

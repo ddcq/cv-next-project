@@ -3,7 +3,10 @@ import {
   LayoutNavigationTree,
   LayoutNavigationItem,
   HomeSVGIcon,
-  TvSVGIcon,
+  FaceSVGIcon,
+  LocalLibrarySVGIcon,
+  WorkSVGIcon,
+  WhatshotSVGIcon,
 } from 'react-md'
 
 /**
@@ -29,7 +32,10 @@ function createRoute(
 
 const navItems: LayoutNavigationTree = {
   '/': createRoute('/', 'Home', <HomeSVGIcon />),
-  '/route-1': createRoute('/route-1', 'Route 1', <TvSVGIcon />),
+  '/skills': createRoute('/skills', 'Compétences', <LocalLibrarySVGIcon />),
+  '/about': createRoute('/about', 'A propos de moi', <WhatshotSVGIcon />),
+  '/projects': createRoute('/projects', 'Projets', <WorkSVGIcon />),
+  '/contact': createRoute('/contact', 'Contact', <FaceSVGIcon />),
 }
 
 export default navItems
