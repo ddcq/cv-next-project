@@ -7,7 +7,7 @@ export default function Contact(): ReactElement {
       <Text type="headline-5">Me Contacter</Text>
       <hr/>
       <Text type="headline-6">Mail</Text>
-      <p>declercq.denis@free.fr</p>
+      <p>forhimandus@gmail.com</p>
       <div className="footer-above">
         <div className="container">
           <div className="row">
@@ -17,7 +17,7 @@ export default function Contact(): ReactElement {
           <div className="row">
             <div className="footer-col col-md-4">
               <h3>Mail</h3>
-              <p>declercq.denis@free.fr</p>
+              <p>forhimandus@gmail.com</p>
             </div>
             <div className="footer-col col-md-4">
               <h3>Around the Web</h3>
