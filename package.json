@@ -1,10 +1,11 @@
 {
-  "name": "with-react-md-typescript",
+  "name": "cv-next-project",
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
+    "eslint": "eslint .",
     "build": "next build",
     "start": "next start",
     "export": "next export",
@@ -24,11 +25,19 @@
   "devDependencies": {
     "@types/aphrodite": "^2.0.0",
     "@types/classnames": "^2.2.10",
-    "@types/react-redux": "^7.1.9",
-    "@types/react-transition-group": "^4.4.0",
     "@types/node": "^14.11.2",
     "@types/react": "^16.9.50",
+    "@types/react-redux": "^7.1.9",
+    "@types/react-transition-group": "^4.4.0",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "@typescript-eslint/parser": "^4.4.1",
+    "eslint": "^7.11.0",
+    "eslint-config-prettier": "^6.13.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.4",
     "node-sass": "^4.14.1",
+    "prettier": "^2.1.2",
     "typescript": "^3.9.7"
   }
 }
