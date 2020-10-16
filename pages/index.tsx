@@ -4,10 +4,8 @@ import { useDispatch } from "react-redux";
 import { CSSTransition } from "react-transition-group";
 import Background from "../components/background";
 import AboutMe from "../components/cards/about-me";
-import Blog from "../components/cards/blog";
 import ContactsCard from "../components/cards/contacts";
 import Resume from "../components/cards/resume";
-import Works from "../components/cards/works";
 import Header from "../components/header";
 import MainSidebar from "../components/main-sidebar";
 import Preloader from "../components/preloader";
@@ -52,8 +50,8 @@ if (typeof window !== "undefined") {
 const CARDS = [
   { n: "about-card", c: <AboutMe /> },
   { n: "resume-card", c: <Resume /> },
-  { n: "works-card", c: <Works /> },
-  { n: "blog-card", c: <Blog />, cl: "blog" },
+  //  { n: "works-card", c: <Works /> },
+  //  { n: "blog-card", c: <Blog />, cl: "blog" },
   { n: "contacts-card", c: <ContactsCard />, cl: "contacts" },
 ];
 
@@ -82,8 +80,8 @@ export default function Home(): ReactElement {
         />
         <Started />
         {CARDS.map((o) => (
-          <CSSTransition in={o.n === activeCard} timeout={500} unmountOnExit classNames={TRANSITION_CLASSNAMES}>
-            <div key={o.n} className="card-inner active" id={o.n}>
+          <CSSTransition key={o.n} in={o.n === activeCard} timeout={500} unmountOnExit classNames={TRANSITION_CLASSNAMES}>
+            <div className="card-inner active" id={o.n}>
               {o.c}
             </div>
           </CSSTransition>

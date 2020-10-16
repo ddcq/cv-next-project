@@ -58,16 +58,16 @@ const LINKS = [
     icon: "android-list",
     text: "Resume",
   },
-  {
-    href: "#works-card",
-    icon: "paintbrush",
-    text: "Works",
-  },
-  {
-    href: "#blog-card",
-    icon: "chatbox-working",
-    text: "Works",
-  },
+  // {
+  //   href: "#works-card",
+  //   icon: "paintbrush",
+  //   text: "Works",
+  // },
+  // {
+  //   href: "#blog-card",
+  //   icon: "chatbox-working",
+  //   text: "Works",
+  // },
   {
     href: "#contacts-card",
     icon: "at",
