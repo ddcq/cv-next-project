@@ -1,5 +1,102 @@
-const Header = ({ onMenuBtnClick }) => {
+import { useCallback, useState } from "react";
+import useWindowSize from "../hooks/useWindowSize";
+import cn from "classnames";
+/*
+var container = $(".container");
+var card_items = $(".card-inner");
+var animation_in = container.data("animation-in");
+var animation_out = container.data("animation-out");
 
+$(".top-menu").on("click", "a", function () {
+  var width = $(window).width();
+  var id = $(this).attr("href");
+  var h = parseFloat($(id).offset().top);
+  var card_item = $(id);
+  var menu_items = $(".top-menu li");
+  var menu_item = $(this).closest("li");
+  var d_lnk = $(".lnks .lnk.discover");
+
+  if (width >= 1024) {
+    if (!menu_item.hasClass("active") & (width > 1023) & $("#home-card").length) {
+      menu_items.removeClass("active");
+      container.find(card_items).removeClass("animated " + animation_in);
+
+      if ($(container).hasClass("opened")) {
+        container.find(card_items).addClass("animated " + animation_out);
+      }
+
+      menu_item.addClass("active");
+      container.addClass("opened");
+      container.find(card_item).removeClass("animated " + animation_out);
+      container.find(card_item).addClass("animated " + animation_in);
+
+      $(card_items).addClass("hidden");
+
+      $(card_item).removeClass("hidden");
+      $(card_item).addClass("active");
+    }
+  }
+  if ((width < 1024) & $("#home-card").length) {
+    $("body,html").animate(
+      {
+        scrollTop: h - 76,
+      },
+      800
+    );
+  }
+  return false;
+});
+*/
+const LINKS = [
+  {
+    href: "#about-card",
+    icon: "person",
+    text: "About",
+  },
+  {
+    href: "#resume-card",
+    icon: "android-list",
+    text: "Resume",
+  },
+  {
+    href: "#works-card",
+    icon: "paintbrush",
+    text: "Works",
+  },
+  {
+    href: "#blog-card",
+    icon: "chatbox-working",
+    text: "Works",
+  },
+  {
+    href: "#contacts-card",
+    icon: "at",
+    text: "Contact",
+  },
+];
+
+const Header = ({ onMenuBtnClick, onActiveCard }) => {
+  const { width } = useWindowSize();
+  const [activeCard, setActiveCard] = useState(LINKS[0].href);
+  const handleClick = useCallback((e) => {
+    const id = $(e.target).closest("a").attr("href");
+    const card_item = $(id);
+    
+    if (width < 1024) {
+      const h = parseFloat(card_item.offset().top);
+      $("body,html").animate({ scrollTop: h - 76 }, 800);
+    } else {
+      if (activeCard !== id) {
+        setActiveCard(id)
+        onActiveCard(id)
+      }
+    }
+
+    var menu_items = $(".top-menu li");
+    var d_lnk = $(".lnks .lnk.discover");
+
+    console.log(e);
+  });
   return (
     <header className="header">
       {/* header profile */}
@@ -26,36 +123,14 @@ const Header = ({ onMenuBtnClick }) => {
       {/* menu */}
       <div className="top-menu">
         <ul>
-          <li className="active">
-            <a href="#about-card">
-              <span className="icon ion-person"></span>
-              <span className="link">About</span>
-            </a>
-          </li>
-          <li>
-            <a href="#resume-card">
-              <span className="icon ion-android-list"></span>
-              <span className="link">Resume</span>
-            </a>
-          </li>
-          <li>
-            <a href="#works-card">
-              <span className="icon ion-paintbrush"></span>
-              <span className="link">Works</span>
-            </a>
-          </li>
-          <li>
-            <a href="#blog-card">
-              <span className="icon ion-chatbox-working"></span>
-              <span className="link">Blog</span>
-            </a>
-          </li>
-          <li>
-            <a href="#contacts-card">
-              <span className="icon ion-at"></span>
-              <span className="link">Contact</span>
-            </a>
-          </li>
+          {LINKS.map((l) => (
+            <li key={l.text} className={cn({ active: activeCard === l })}>
+              <a href={l.href} onClick={handleClick}>
+                <span className={"icon ion-" + l.icon}></span>
+                <span className="link">{l.text}</span>
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </header>

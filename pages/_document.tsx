@@ -1,5 +1,5 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
 import { StyleSheetServer } from "aphrodite/no-important";
+import Document, { Head, Html, Main, NextScript } from "next/document";
 
 interface MyDocumentProps {
   renderPage: Function;
@@ -15,7 +15,6 @@ class MyDocument extends Document<MyDocumentProps> {
     const { html, css } = StyleSheetServer.renderStatic(() => renderPage());
     const ids = css.renderedClassNames;
     const htmlObj = (html as any) as { html: string };
-    console.log(html);
     return { html: htmlObj.html, css, ids };
   }
 

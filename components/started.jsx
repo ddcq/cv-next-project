@@ -1,14 +1,11 @@
 const Started = () => (
   <div className="card-started" id="home-card">
-    {/* 					Profile */}
     <div className="profile no-photo">
-      {/* profile image */}
       <div
         className="slide"
         style={{ backgroundImage: "url(header.jpg)" }}
       ></div>
 
-      {/* profile titles */}
       <div className="title">Denis Declercq</div>
       <div className="subtitle">Fullstack Devoloper React.js / Node.js</div>
       {/*
@@ -20,31 +17,23 @@ const Started = () => (
 						  </div>
 					  </div>
 					  */}
-      {/* profile socials */}
       <div className="social">
-        <a target="_blank" href="https://dribbble.com/">
-          <span className="fa fa-dribbble"></span>
-        </a>
-        <a target="_blank" href="https://twitter.com/">
+        <a target="_blank" href="https://twitter.com/trotipette">
           <span className="fa fa-twitter"></span>
         </a>
         <a target="_blank" href="https://github.com/ddcq">
           <span className="fa fa-github"></span>
         </a>
-        <a target="_blank" href="https://www.spotify.com/">
-          <span className="fa fa-spotify"></span>
-        </a>
-        <a target="_blank" href="https://stackoverflow.com/">
-          <span className="fa fa-stack-overflow"></span>
+        <a target="_blank" href="https://www.linkedin.com/in/denis-declercq-bb6b298/">
+          <span className="fa fa-linkedin"></span>
         </a>
       </div>
 
-      {/* profile buttons */}
       <div className="lnks">
         <a href="#" className="lnk">
           <span className="text">Download CV</span>
         </a>
-        <a href="#" className="lnk discover">
+        <a href="#contacts-card" className="lnk discover">
           <span className="text">Contact Me</span>
         </a>
       </div>
@@ -52,3 +41,7 @@ const Started = () => (
   </div>
 );
 export default Started;
+
+// $(".lnks").on("click", ".lnk.discover", function () {
+//   $('.top-menu a[href="#contacts-card"]').trigger("click");
+// });

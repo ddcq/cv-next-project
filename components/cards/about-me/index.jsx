@@ -7,7 +7,6 @@ const birthday = +new Date(1976, 7, 20);
 const age = ~~((Date.now() - birthday) / 31557600000);
 
 const AboutMe = () => (
-  <div className="card-inner animated active" id="about-card">
     <div className="card-wrap">
       {/* 						About  */}
       <div className="content about">
@@ -48,7 +47,6 @@ const AboutMe = () => (
       </div>
       <Clients />
       <Quote />
-    </div>
   </div>
 );
 
