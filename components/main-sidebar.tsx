@@ -1,63 +1,87 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import Sidebar from './sidebar';
 import Widget from './sidebar/widget';
 import WidgetTitle from './sidebar/widget-title';
 
+type LnkProps = {
+	href: string;
+	img?: string;
+	text: string;
+};
+const Lnk: FunctionComponent<LnkProps> = ({ href, img, text }) => (
+	<li>
+		<a href={href}>
+			{img && <img width="16px" height="16px" alt={href.substr(href.indexOf(':') + 2)} src={img} />}
+			{text}
+		</a>
+	</li>
+);
 const MainSidebar = (): JSX.Element => (
 	<Sidebar id="MainSidebar">
-		<Widget id="favorites">
-			<WidgetTitle>Favorites</WidgetTitle>
+		<h3>Favorites</h3>
+		<Widget id="favorites-css">
+			<WidgetTitle>Design</WidgetTitle>
+			<ul>
+				<Lnk
+					href="https://css-houdini.rocks/"
+					img="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvElEQVQ4jbWTUQ6CMBBER/1D7oaeiXAkDT/cQq9gghfQQNrnz5LUWiqYuEnTSacz3W630j8CtFuyNifeBLgE7VNcVgyqQGdQD7qBTqBqqUkNYmbUc6KtzQfbOIIGkAc5w6Nxx1Dzlj6oCwSYgTc8GNclrwEq7M7TqXH6zrgeVEy6MA0k+WyBEhEaPCVdzcgFphh2hi+SHnH6uSL6xUW0uck8YxPu/YiokVrQ3Ua7ppHiVi5T3DeT3z/T2ngBYgoBM/1LzzEAAAAASUVORK5CYII="
+					text="CSS Houdini Experiments"
+				/>
+				<Lnk
+					href="https://postcss.org/"
+					img="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAC0klEQVQ4jX2TzWvcZRSFn/P+JjOZmSZtQiOBtjpOEik2iDTYmKHWgEWsjQsXgrVIoSAu3Aru/AMEXas77apYRPAjBWkpJckgGETR2homo6S0aAgEne/M7z0uJJBufFZ3cc+BC/cRe9iYGx7dUfpixEclJ1gvCNoWP9kE8M+ZjL8s3ezUdzPaHdae2fe40ng+oNsZ+Vov6gnEuPAjDnyV9ONWquSUxHHwt+WV1qIgBoC1Sm5CaXqRwOfllealPsmQgks5Ny9HhSuKLDA4uD1ZbX7qTHwf8dJ6pXAGINyboZAouSD5i8ml1mptZmS/nT4H8ZsjVdpTy41fLN92t3feECZvtjdQ+gFwtjabm8q0soXnQ9Tf5WpnGcDZ7qvAIaJmanOF05aLAQ1ZnFmvFOyV1oda6v5WmysukUnOBcGJNGhR4Prc0FFgWjAu6SKBc4JZR04KrgJna6fyhwAUwqrM8WBoD8bGen2+NOgk5gQ/YA4IXe4MFF8ur7RfJ/Cu0RjiMH1dMAQNJH9axCCr2s+V3Gk9VCwvNX+0FJHb6f7mZ8dubDYEnlhufQ+xg70lU6hXiqe7O5lUkA8hiY0WzUxsNP4BkOlBuDa1SHfvj2AdNOolDpfAC1m1yzZpCMre4a+x3rFbt3r/3Rb74IfXZkeHd7O1k7nHCIwKGtmdxh8WV2P0W4DkV0h+3zwwlPb62TSrmPT6rwU0ZrhnkwrnLWZkVi1NS3wUrH6Ed0zcydy9S9baOSH7cKYn41AwccsoKjAu1Ld1PcB9B6/jmI8xySk4D1wRQP2p4ngc8EzWretHqrT5HwyhNld4Q2ikXG2+FwBKpeYm9nCP/Jv1pwdL3uPIXu7MDx2sVYpvEzyZJflYEPVAc2XfvOwFQtxw5LvMgO/HPjF1GE2kacuzRK2F3MAnj97Y3n7Axj1WjiVp+mxETwpGZIoOdIj+1cSvJ6rddUHc3f8XdRRbOorYWF4AAAAASUVORK5CYII="
+					text="PostCSS"
+				/>
+				<Lnk
+					href="http://getbootstrap.com/"
+					img="https://www.drupal.org/files/issues/2020-02-25/favicon-v2.png"
+					text="Bootstrap"
+				/>
+				<Lnk href="http://learnboost.github.io/stylus/" text="Stylus" />
+				<Lnk href="http://bootsnipp.com" text="Bootstrap generators" />
+				<Lnk
+					href="https://material.io"
+					img="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABs0lEQVQ4jZVTy2rjQBCsbo3kQUEGg0HgjwjkFPIDhpAvyUm3TQ7OKT4ke8tpL/6JPSwB/0DIKZBvkAQGGyNBduQZjyaHWEHxY8nWbbqrumoamrCFwWAQBkEwBPADwNmm/ATgp9Z6muf53zaftvQX/X7/1vO8EwBwzn2Q6INmrX2Zz+c3AP7sDBiNRpe+7z/Ude03wm0QEZjZGGOS8Xj867MRhuF5kiTafRNJkugwDM8BgOM4Poqi6K4oCj/P873ObeR5jqIo/CiK7uI4PmIp5dDzvGMiQpqm0FofFGutkaYpiAie5x1LKYdMRFfOORARlFLIsuzggCzLoJQCEWGjuWIApw2BmQ+maNyZuV0+/fL6V4q2exsM4PlLYU+KA+4A8MzOufv21H0p9rlv9nDPVVVNrbWv7WaTwhgDY8yOOxHBWvtaVdVUzGazt263ey2E+C2l9BuStRaLxQIAUNc1pJQAACklhBBGKXVdluWbAICyLB+ttclkMnlYr9e+cw7OOQRB8LkDIgIRQQhhrLVJWZaPwNYxdTqdi16vd8vMJ41z86XN+2W5XN6sVqvdY2rwv+f8DjlDGpHfSLNqAAAAAElFTkSuQmCC"
+					text="Material Design"
+				/>
+			</ul>
+		</Widget>
+		<Widget id="favorites-js">
+			<WidgetTitle>Javascript</WidgetTitle>
+			<ul>
+				<Lnk
+					href="http://nodejs.org/"
+					img="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACQUlEQVQ4jX2TPWiVZxSAn/d9v597Q5IOIiWFGJBSWlDa4pShTh0dsli6FRTuqDgUOpR4K26CpY4tzdIlxMW9InTuoBAXtyYZUjW5JPfn+3l/znGwSkhvcrYD5zw853COYUrc2rjaLTuzKymY1XoSadpwZ+6D+Ojnbx7Wx2vN0aTf79vB8rMvC5m5maViRbyba1uhmrQj4FGW8cuH/3zytN/vy/8AvT+/PlfYvOekuJan7kIWO4h3hKA0tSeEhLN21zi7Vhh+ffDdH9sA5lKvl39xZevbzpx+b7AXXCpNHrscBYQQaeqAAZyzajP7XFK697d/sW6XPttbbAfFbUnm4vGRjk5qnUFUEVEjSS8O6vHt7qC7aPNcM1+Z3I/c9N53CGsQFBGl8i37o1GOklmKFpxSH1okmpMUAEgqBEkcVGNCigBYSjC5kALUQ4OeAlCUia9pYyCzlpISC2CcolZ4vdvS1nKqhZeINYbSFVD+Z2AzpQme4dCz/9qfagEgqjiXvTUoC4gamYwDqjDYb6iqcCogSEQ0UZZgo7ZxNAwheMEY8F54+WqC6skeqkodfPChjXZ272CnHqY+sAmoMTA4rBmOG4yZug01mE2R+NO/Mwc77ysu3728iJUemOuqunBmfpaPFz5CEviQCDFSte3uqG5+HzfNb49/eLwN8P56tp5sDbe+2v7rnF16gjEzPsTznbIoO3lBFB0llQ0iNz7d+3x97ce1g3d9Ux2X7y93XeVWzszPry6dPYsqd7KsmvrObwA+tTchrleiRQAAAABJRU5ErkJggg=="
+					text="Node JS"
+				/>
+				<Lnk href="http://gruntjs.com/" text="Grunt: The JavaScript Task Runner" />
+				<Lnk href="http://bower.io/" text="BOWER: A package manager for the web" />
+				<Lnk
+					href="https://medium.com/javascript-scene/native-apps-are-doomed-ac397148a2c0#.2x2ku8eok"
+					text="Native Apps are Doomed"
+				/>
+			</ul>
+		</Widget>
+		<Widget id="favorites-java">
+			<WidgetTitle>Java</WidgetTitle>
 			<ul>
 				<li>
-					<a href="https://material.io/resources/icons/?style=baseline">
+					<a href="http://search.maven.org/#search%7Cga%7C1%7C">
+						Maven: The Central Repository Search Engine
+					</a>
+				</li>
+				<li>
+					<a href="http://charlie.cu.cc/2012/06/how-add-external-libraries-maven/">
+						How to add external libraries in Maven
+					</a>
+				</li>
+				<li>
+					<a href="https://github.com/spring-projects/spring-boot">
 						<img
 							alt=""
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABs0lEQVQ4jZVTy2rjQBCsbo3kQUEGg0HgjwjkFPIDhpAvyUm3TQ7OKT4ke8tpL/6JPSwB/0DIKZBvkAQGGyNBduQZjyaHWEHxY8nWbbqrumoamrCFwWAQBkEwBPADwNmm/ATgp9Z6muf53zaftvQX/X7/1vO8EwBwzn2Q6INmrX2Zz+c3AP7sDBiNRpe+7z/Ude03wm0QEZjZGGOS8Xj867MRhuF5kiTafRNJkugwDM8BgOM4Poqi6K4oCj/P873ObeR5jqIo/CiK7uI4PmIp5dDzvGMiQpqm0FofFGutkaYpiAie5x1LKYdMRFfOORARlFLIsuzggCzLoJQCEWGjuWIApw2BmQ+maNyZuV0+/fL6V4q2exsM4PlLYU+KA+4A8MzOufv21H0p9rlv9nDPVVVNrbWv7WaTwhgDY8yOOxHBWvtaVdVUzGazt263ey2E+C2l9BuStRaLxQIAUNc1pJQAACklhBBGKXVdluWbAICyLB+ttclkMnlYr9e+cw7OOQRB8LkDIgIRQQhhrLVJWZaPwNYxdTqdi16vd8vMJ41z86XN+2W5XN6sVqvdY2rwv+f8DjlDGpHfSLNqAAAAAElFTkSuQmCC"
+							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACJElEQVQ4jY1TMWsUQRT+5r3d3Cbe7t3u3hEDdoJgIVieGo1YBixsBIsUtvkHNpaCnaJFUMEihSlEbGxFE8XCRrDWIAqJyd3t3JGcuduZeRa5DUtAk6968/i+733zhlE4hHq9foWZbwG4pkRmAECU2gDw1lr7Qmu9WuarUs2NOH7Onrdw2LQMa8xyO8tuA7BlA07TdM0juvA/cQHj3KdOp3MZgGUAaMTxssc8nxuzOsrzm90s2yDmU6TUtoh0BKhut9t3Rnl+1/O8Mz7z7GSlcnqwt/cKURS1pptNmW42JUmSpfGQKoCp0tBqkTZJkqWCH0VRiyaYFw/uZ+2zcbkDYFAy2AEgAOCcWymaE8yLBOZZALDOjQB0jrGCdevccH9zPEsYPxWU2uz1eutHqbXWP6DUbwCAyAwV0QDUANAxEhBE6uNaSICfAMBK1dI0vX6UOo7jeSaKsD/5F5FSa04EW+22dca8jMPw0r/ESRheZKKnxVlE3lFuzOPRMIeIWN3v93u7ux+IaBBFUasgBkFwlYi2/SD4yEQnSwaPSGv9xa/4T6abzYm6789Vq9WFMAw/K6W2CmKlUtmJoqhRTmNFHmRZ9vXgLyRx/J6IzlnnzotIX2utS/ywkaabTDQFANaY1+0su7G/0TG6WTYHpVaY6LvH/A3ATMngRCE2xtwrxADA5ViDweDNZBDsQamG7/vLw+HwDwDUajVfiZx1wMNOt3u/rPkLJe7aBdfH1TYAAAAASUVORK5CYII="
 						/>
-						Icons - Material Design
-					</a>
-				</li>
-				<li>
-					<a href="http://nginx.com/index.html">NGINX, Inc.</a>
-				</li>
-				<li>
-					<a href="https://docs.webplatform.org/wiki/tutorials/javascript_best_practices">
-						<img
-							alt=""
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACHklEQVQ4jb2TTUhUYRSGn+/e66hX05woKUJQ7AeSaJGEGxeCMZvatQmkIVpFuxYmTRQJQrRLHESidmUYIlSoQShESUaSKUk/E8iYOdakNc3Mdebe77QYGDVzF53FWb08L+c958C/KJ2MSWYoKJn+gLjv7slmupsf5+TY6IR0TEfyGgNARwZAZzD2ncR9FkKcpQ2QSCIlvbNfuFRXw+D8NwY/f5U8gGwKSUTRsZeAIK6zwT3leSSyLk8Xl0h7moTrAWDlejGy+BqJvwW7EpTaALCU4per6XwfBYQCQ62OAAKmDywbAGXluGMDQzIz9kogxzQUlFomxhoD608nZZkgmjutHdLbcQOdyfK4+64UldgopRBZH886gDJBGQaxa1cZ637EmYd9TA0P03MhTMB/AJ/fxFlx/w5QpoCymOvPIEvjNOyv5MrxILbPxH/wBE96XpA9YmM274Wf6fUAZQqCwfyDQn5MC3ZtAfV+j2xtCaOFAVR5DQU6iTMSwacF1VidDzp3B67J3H3F9/EkRjF4joMq20rL7S5aQkF0Jo0WwRVNfGAKbzSCWruF5YkVZEczVe2X0ckkVkUFO9vaMeoOq6ZAtTp9vhHHcdnmL+VW1ym2T8ZIzyysAozyXXiJZVZmZzG3lFF1PUzJofr8rhqO7lFnW5vAEz5F47ieZrddtJqkl0rJQrhToqE2Sb6Z3PQXRp5/kHMX+6R/cHPN/6/fRTLvVWxfvo8AAAAASUVORK5CYII="
-						/>
-						javascript best practices · tutorials · WPD · WebPlatform.org
-					</a>
-				</li>
-				<li>
-					<a href="http://betterexplained.com/articles/speed-up-your-javascript-load-time/">
-						Speed Up Your Javascript Load Time | BetterExplained
-					</a>
-				</li>
-				<li>
-					<a href="http://www.virtuosimedia.com/dev/css/ultimate-ie6-cheatsheet-how-to-fix-25-internet-explorer-6-bugs">
-						Ultimate IE6 Cheatsheet: How To Fix 25+ Internet Explorer 6 Bugs
-					</a>
-				</li>
-				<li>
-					<a href="http://stackoverflow.com/questions/3803719/getelementbyid-problem-in-google-chrome">
-						<img
-							alt=""
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB3UlEQVQ4jaWSP2hTURTGv3Pffe81RYeGVGloFYRIiXYpKDiUjC6Kgy4ugi0Wqq+2UjeXQAfFoSKJfx8FN6WDk+AigopbwCVRKP6p1rQYW1NU6Hvl5hynV2ISm4Lfdrjf9+N8l0PYQllAjZw7cJOIPBG8CL4GR1NP34f1HtUGwLN+aUIgj4mQcXvd+42eLQERZKO6PiyMgiI682X04JX6d2oVqtyyPRKJGzZ3ei7iOwB8Hh7YpxRekZIki5ze45cetQQsziDW4TgFENICqUAkJ8b4uyfxbXEkfRhkvYRisPCxvf67Z00VZn8iFNo4YZG5SpBOIjVNtl2s3NXTpu/tPLnBKTJaK9ZD/6wQaeEGenY6aowIF1isOBOvSmjfNsvxgn996UkW4L8Ac5eOxMh1z4tRH01N5sPqpw9nHywEpWz3jq6u36MddjgJQh+DexNjKDdtMDc1lLZsXYpmFlplVkWlaq9tFb5JdP7gXbEVd//llYeRR9cDqtotd/P6SaWsQYEcsoAULMoIKFNjF8u/kiivJTPA880MAcC45wkA5PL5pj+5N3U8oTX6Har1OwgH1gJ9rWhSS5FfNwYiWKRiCKDueHP5/MS4l9qc215iOzVt0KrGtgGN629H/13hD5TKuUFtsCROAAAAAElFTkSuQmCC"
-						/>
-						javascript - getElementById problem in Google Chrome - Stack Overflow
-					</a>
-				</li>
-				<li>
-					<a href="http://www.petri.co.il/send_mail_from_script.htm">Send Mail from Script</a>
-				</li>
-				<li>
-					<a href="http://forum.debian-fr.org/viewtopic.php?f=8&t=12674&start=0">
-						<img
-							alt=""
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA3klEQVQ4jb2TwZXDIAxEv/elEJUypbgUlUIpKkWdaA84BBtnk9PqBDPSjACxcYlsUWSQERAHKDAJTNiubc7frsXpDnkUoY4THUuw5ovIKA5TBap0rzs+5Z1vsfCkvMLekLMJqtTFYBD7mcjdK+Un/Gr06GgAYM23uXjejxDgr+1PzwZscnavPERn7C738cpYvMbxyMD86CbBrs+Z3m/3VChfXiNMy0X3DkxAkC1qKHeIMNWzOzPBfnYfi5CKABHn4Xp2cTOFy1nfDdHXkfvnYfonkS/G+rPI8bnS/U+hX8zsvuRTgkPeAAAAAElFTkSuQmCC"
-						/>
-						Booter sur USB lorsque le BIOS ne le permet pas
+						spring-projects/spring-boot
 					</a>
 				</li>
 				<li>
@@ -68,9 +92,6 @@ const MainSidebar = (): JSX.Element => (
 						/>
 						artifact listener
 					</a>
-				</li>
-				<li>
-					<a href="http://search.maven.org/#search%7Cga%7C1%7C">The Central Repository Search Engine</a>
 				</li>
 				<li>
 					<a href="http://www.joda.org/joda-time/">
@@ -90,102 +111,31 @@ const MainSidebar = (): JSX.Element => (
 						AssertJ fork de fest-assert
 					</a>
 				</li>
-				<li>
-					<a href="https://github.com/spring-projects/spring-boot">
-						<img
-							alt=""
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACJElEQVQ4jY1TMWsUQRT+5r3d3Cbe7t3u3hEDdoJgIVieGo1YBixsBIsUtvkHNpaCnaJFUMEihSlEbGxFE8XCRrDWIAqJyd3t3JGcuduZeRa5DUtAk6968/i+733zhlE4hHq9foWZbwG4pkRmAECU2gDw1lr7Qmu9WuarUs2NOH7Onrdw2LQMa8xyO8tuA7BlA07TdM0juvA/cQHj3KdOp3MZgGUAaMTxssc8nxuzOsrzm90s2yDmU6TUtoh0BKhut9t3Rnl+1/O8Mz7z7GSlcnqwt/cKURS1pptNmW42JUmSpfGQKoCp0tBqkTZJkqWCH0VRiyaYFw/uZ+2zcbkDYFAy2AEgAOCcWymaE8yLBOZZALDOjQB0jrGCdevccH9zPEsYPxWU2uz1eutHqbXWP6DUbwCAyAwV0QDUANAxEhBE6uNaSICfAMBK1dI0vX6UOo7jeSaKsD/5F5FSa04EW+22dca8jMPw0r/ESRheZKKnxVlE3lFuzOPRMIeIWN3v93u7ux+IaBBFUasgBkFwlYi2/SD4yEQnSwaPSGv9xa/4T6abzYm6789Vq9WFMAw/K6W2CmKlUtmJoqhRTmNFHmRZ9vXgLyRx/J6IzlnnzotIX2utS/ywkaabTDQFANaY1+0su7G/0TG6WTYHpVaY6LvH/A3ATMngRCE2xtwrxADA5ViDweDNZBDsQamG7/vLw+HwDwDUajVfiZx1wMNOt3u/rPkLJe7aBdfH1TYAAAAASUVORK5CYII="
-						/>
-						spring-projects/spring-boot
-					</a>
-				</li>
-				<li>
-					<a href="https://github.com/stephanenicolas/boundbox">
-						<img
-							alt=""
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACJElEQVQ4jY1TMWsUQRT+5r3d3Cbe7t3u3hEDdoJgIVieGo1YBixsBIsUtvkHNpaCnaJFUMEihSlEbGxFE8XCRrDWIAqJyd3t3JGcuduZeRa5DUtAk6968/i+733zhlE4hHq9foWZbwG4pkRmAECU2gDw1lr7Qmu9WuarUs2NOH7Onrdw2LQMa8xyO8tuA7BlA07TdM0juvA/cQHj3KdOp3MZgGUAaMTxssc8nxuzOsrzm90s2yDmU6TUtoh0BKhut9t3Rnl+1/O8Mz7z7GSlcnqwt/cKURS1pptNmW42JUmSpfGQKoCp0tBqkTZJkqWCH0VRiyaYFw/uZ+2zcbkDYFAy2AEgAOCcWymaE8yLBOZZALDOjQB0jrGCdevccH9zPEsYPxWU2uz1eutHqbXWP6DUbwCAyAwV0QDUANAxEhBE6uNaSICfAMBK1dI0vX6UOo7jeSaKsD/5F5FSa04EW+22dca8jMPw0r/ESRheZKKnxVlE3lFuzOPRMIeIWN3v93u7ux+IaBBFUasgBkFwlYi2/SD4yEQnSwaPSGv9xa/4T6abzYm6789Vq9WFMAw/K6W2CmKlUtmJoqhRTmNFHmRZ9vXgLyRx/J6IzlnnzotIX2utS/ywkaabTDQFANaY1+0su7G/0TG6WTYHpVaY6LvH/A3ATMngRCE2xtwrxADA5ViDweDNZBDsQamG7/vLw+HwDwDUajVfiZx1wMNOt3u/rPkLJe7aBdfH1TYAAAAASUVORK5CYII="
-						/>
-						BoundBox breaks encapsulation
-					</a>
-				</li>
 			</ul>
-			<h3>Maven</h3>
+		</Widget>
+		<Widget id="favorites">
+			<WidgetTitle>Autres</WidgetTitle>
 			<ul>
 				<li>
-					<a href="http://charlie.cu.cc/2012/06/how-add-external-libraries-maven/">
-						How to add external libraries in Maven
+					<a href="http://nginx.com/index.html">NGINX, Inc.</a>
+				</li>
+				<li>
+					<a href="http://www.petri.co.il/send_mail_from_script.htm">Send Mail from Script</a>
+				</li>
+				<li>
+					<a href="http://forum.debian-fr.org/viewtopic.php?f=8&t=12674&start=0">
+						<img
+							alt=""
+							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA3klEQVQ4jb2TwZXDIAxEv/elEJUypbgUlUIpKkWdaA84BBtnk9PqBDPSjACxcYlsUWSQERAHKDAJTNiubc7frsXpDnkUoY4THUuw5ovIKA5TBap0rzs+5Z1vsfCkvMLekLMJqtTFYBD7mcjdK+Un/Gr06GgAYM23uXjejxDgr+1PzwZscnavPERn7C738cpYvMbxyMD86CbBrs+Z3m/3VChfXiNMy0X3DkxAkC1qKHeIMNWzOzPBfnYfi5CKABHn4Xp2cTOFy1nfDdHXkfvnYfonkS/G+rPI8bnS/U+hX8zsvuRTgkPeAAAAAElFTkSuQmCC"
+						/>
+						Booter sur USB lorsque le BIOS ne le permet pas
 					</a>
 				</li>
 			</ul>
 			<h3>Javascript</h3>
 			<ul>
 				<li>
-					<a href="http://gruntjs.com/">Grunt: The JavaScript Task Runner</a>
-				</li>
-				<li>
-					<a href="https://github.com/bower/bower">
-						<img
-							alt=""
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACJElEQVQ4jY1TMWsUQRT+5r3d3Cbe7t3u3hEDdoJgIVieGo1YBixsBIsUtvkHNpaCnaJFUMEihSlEbGxFE8XCRrDWIAqJyd3t3JGcuduZeRa5DUtAk6968/i+733zhlE4hHq9foWZbwG4pkRmAECU2gDw1lr7Qmu9WuarUs2NOH7Onrdw2LQMa8xyO8tuA7BlA07TdM0juvA/cQHj3KdOp3MZgGUAaMTxssc8nxuzOsrzm90s2yDmU6TUtoh0BKhut9t3Rnl+1/O8Mz7z7GSlcnqwt/cKURS1pptNmW42JUmSpfGQKoCp0tBqkTZJkqWCH0VRiyaYFw/uZ+2zcbkDYFAy2AEgAOCcWymaE8yLBOZZALDOjQB0jrGCdevccH9zPEsYPxWU2uz1eutHqbXWP6DUbwCAyAwV0QDUANAxEhBE6uNaSICfAMBK1dI0vX6UOo7jeSaKsD/5F5FSa04EW+22dca8jMPw0r/ESRheZKKnxVlE3lFuzOPRMIeIWN3v93u7ux+IaBBFUasgBkFwlYi2/SD4yEQnSwaPSGv9xa/4T6abzYm6789Vq9WFMAw/K6W2CmKlUtmJoqhRTmNFHmRZ9vXgLyRx/J6IzlnnzotIX2utS/ywkaabTDQFANaY1+0su7G/0TG6WTYHpVaY6LvH/A3ATMngRCE2xtwrxADA5ViDweDNZBDsQamG7/vLw+HwDwDUajVfiZx1wMNOt3u/rPkLJe7aBdfH1TYAAAAASUVORK5CYII="
-						/>
-						bower
-					</a>
-				</li>
-				<li>
-					<a href="http://bower.io/">BOWER: A package manager for the web</a>
-				</li>
-				<li>
-					<a href="http://nodejs.org/">
-						<img
-							alt=""
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACQUlEQVQ4jX2TPWiVZxSAn/d9v597Q5IOIiWFGJBSWlDa4pShTh0dsli6FRTuqDgUOpR4K26CpY4tzdIlxMW9InTuoBAXtyYZUjW5JPfn+3l/znGwSkhvcrYD5zw853COYUrc2rjaLTuzKymY1XoSadpwZ+6D+Ojnbx7Wx2vN0aTf79vB8rMvC5m5maViRbyba1uhmrQj4FGW8cuH/3zytN/vy/8AvT+/PlfYvOekuJan7kIWO4h3hKA0tSeEhLN21zi7Vhh+ffDdH9sA5lKvl39xZevbzpx+b7AXXCpNHrscBYQQaeqAAZyzajP7XFK697d/sW6XPttbbAfFbUnm4vGRjk5qnUFUEVEjSS8O6vHt7qC7aPNcM1+Z3I/c9N53CGsQFBGl8i37o1GOklmKFpxSH1okmpMUAEgqBEkcVGNCigBYSjC5kALUQ4OeAlCUia9pYyCzlpISC2CcolZ4vdvS1nKqhZeINYbSFVD+Z2AzpQme4dCz/9qfagEgqjiXvTUoC4gamYwDqjDYb6iqcCogSEQ0UZZgo7ZxNAwheMEY8F54+WqC6skeqkodfPChjXZ272CnHqY+sAmoMTA4rBmOG4yZug01mE2R+NO/Mwc77ysu3728iJUemOuqunBmfpaPFz5CEviQCDFSte3uqG5+HzfNb49/eLwN8P56tp5sDbe+2v7rnF16gjEzPsTznbIoO3lBFB0llQ0iNz7d+3x97ce1g3d9Ux2X7y93XeVWzszPry6dPYsqd7KsmvrObwA+tTchrleiRQAAAABJRU5ErkJggg=="
-						/>
-						node.js
-					</a>
-				</li>
-				<li>
-					<a href="http://learnboost.github.io/stylus/">Stylus</a>
-				</li>
-				<li>
-					<a href="http://blog.sensible.io/2013/05/23/how-to-write-a-login-form.html">
-						<img
-							alt=""
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABeElEQVQ4jdWRz0tUcRTFP/e9r+MwE9koJgMJswqJqfAHgvLExctmyE07l/0VBRHkH+CqZf9CKxfBILiQaGGp4EJE3BgINqA4jDzUZt6710Ux1MOJFkF0dvdwzj2Xe+C/h/+XNGAgBh4gv5EJ3zV/jonK3IuxMJzpZuyQByVuRWX3uHmH/p/SMNVecThAH4bB3fFqNUifRGOEkno9y1lh41xthCheGDykDuhE5dF7NX0L4Jx7g0ldLWlsHjeesrUVewAak3NY0QwnsOL1EgH6I6SIMeCJ/8rayevPtZVpMZkaLRRmAXMAnuO8pSxlfcs5kZct3232zVf2752efm0jsYgYYrH55AHfMN8g7vzA2tzwRJ6JSEnV9r7hHQ1r/E5ymTLYkaleJIksivjPJ59U14Ha9urqB0A6ldWHyN/s77kfnbR3bh8TBUFQ+Fgsnj1oNrNnrVbyZW3tshyGQ/lMZuBTrbb7SxWW6j49pxvripTxuiXShf+HuAK3/YWbll81mQAAAABJRU5ErkJggg=="
-						/>
-						How to write a login form using Ember.js
-					</a>
-				</li>
-				<li>
-					<a href="http://stackoverflow.com/questions/14790747/ember-how-do-i-find-handlebars-partial-in-the-directory">
-						<img
-							alt=""
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB3UlEQVQ4jaWSP2hTURTGv3Pffe81RYeGVGloFYRIiXYpKDiUjC6Kgy4ugi0Wqq+2UjeXQAfFoSKJfx8FN6WDk+AigopbwCVRKP6p1rQYW1NU6Hvl5hynV2ISm4Lfdrjf9+N8l0PYQllAjZw7cJOIPBG8CL4GR1NP34f1HtUGwLN+aUIgj4mQcXvd+42eLQERZKO6PiyMgiI682X04JX6d2oVqtyyPRKJGzZ3ei7iOwB8Hh7YpxRekZIki5ze45cetQQsziDW4TgFENICqUAkJ8b4uyfxbXEkfRhkvYRisPCxvf67Z00VZn8iFNo4YZG5SpBOIjVNtl2s3NXTpu/tPLnBKTJaK9ZD/6wQaeEGenY6aowIF1isOBOvSmjfNsvxgn996UkW4L8Ac5eOxMh1z4tRH01N5sPqpw9nHywEpWz3jq6u36MddjgJQh+DexNjKDdtMDc1lLZsXYpmFlplVkWlaq9tFb5JdP7gXbEVd//llYeRR9cDqtotd/P6SaWsQYEcsoAULMoIKFNjF8u/kiivJTPA880MAcC45wkA5PL5pj+5N3U8oTX6Har1OwgH1gJ9rWhSS5FfNwYiWKRiCKDueHP5/MS4l9qc215iOzVt0KrGtgGN629H/13hD5TKuUFtsCROAAAAAElFTkSuQmCC"
-						/>
-						Ember: How to find handlebars partial in the directory
-					</a>
-				</li>
-				<li>
-					<a href="http://emberjs.com/">
-						<img
-							alt=""
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACvklEQVQ4jT2TQYhVVRjHf9855757Z948tTEMB4cUZRQZBLWEDCErEbKEVu3cRYtombsIgtxFUIRIEELiojZBRJsIJItClKBJKoeZyRl1Zphx8r2Z9+67597va3HfeFZn8fH7zv/7zk8Wzp02UwBDBBABNRAHGCaCE8HMAEBAQoCypOpuEIS61lTqAjNMao7FCFVETTAMaTTw2RCIoFqh/ZxgZrhBZzVDRBDA+jmNiUmGnjuJS1Ms9und+Inizm1cmoGrXxhEBAXM6ggGUEaap15jyxtv4kdabJ6h4y/x8OP3Kf76A3OCqeLMAKPOKQL9nOzocbadexs/0iIu3qPz3VfEpfv41lbSg4epHq6geQ8BHFpiZYmVEfIuVvRpvngGSVKsLGlfucjaJx8Q//kTUwXnMNP6LkLQ9Q6YYrHEVAlP76WxZwIzo5i+zca170kmJgm79yHOUc7PYIBTxYCA87jGMMmBvRTzMzT27ce1tiIixLlpskPP8sRb75KM7yH//Ve6v/yIZBmmVT3wf88es5GXX2X0nfeIiwtQliS7dmNmWK+LG25iZmz88C3tq5coVxYxH2oAEMQ7tNOmmJsmjI3jGunjfJJm5FO36HzzJfmN6+A96eRR4oO7VCvLiPcE5z35zZ8pZu+QPDXG8IlTNE+/jpmij9Z4dPlTygd3aRw4xPALr5BNHmH1sw+plu6D9wQtCsR5dHWZ7r054sIs6TPPE7bvwG3Zxuj5C1BV+NEncWlGtd5G1zsYMlgjYKqYVviRFlV7jf8+/4hyZQkJgWTHTpKdu3BphuY92l9/QTHzN5IkAAQ2JUHQPMeFhN5v16hWl2mePEMYG0fX28T5WfpTN+lN3QLvEBEwQ+bPHjM1Q9zmPzYkDLhONgWst1KVtZWDpiJC0IEDmA0AQFUh3tfCSA1xIiiGxvhYOID/AYS5W///vDdTAAAAAElFTkSuQmCC"
-						/>
-						Ember.js - About
-					</a>
-				</li>
-				<li>
-					<a href="http://getbootstrap.com/">Bootstrap</a>
-				</li>
-				<li>
-					<a href="http://bootsnipp.com/forms">Twitter Bootstrap Form generator</a>
-				</li>
-				<li>
 					<a href="http://www.browserswarm.com/">BrowserSwarm Tester sur tous les navigateurs</a>
-				</li>
-				<li>
-					<a href="https://egghead.io/lessons/javascript-redux-react-todo-list-example-adding-a-todo">
-						Redux: React Todo List Example (Adding a Todo) - js Video Tutorial #free @eggheadio
-					</a>
 				</li>
 			</ul>
 			<ul>
@@ -236,11 +186,7 @@ const MainSidebar = (): JSX.Element => (
 						Google Code Archive - Long-term storage for Google Code Project Hosting.
 					</a>
 				</li>
-				<li>
-					<a href="https://medium.com/javascript-scene/native-apps-are-doomed-ac397148a2c0#.2x2ku8eok">
-						Native Apps are Doomed – JavaScript Scene – Medium
-					</a>
-				</li>
+
 				<li>
 					<a href="http://www.pixijs.com/">
 						<img
@@ -271,24 +217,6 @@ const MainSidebar = (): JSX.Element => (
 				<li>
 					<a href="https://www.conventionalcommits.org/fr/v1.0.0/#sp%c3%a9cification">
 						Commits Conventionnels
-					</a>
-				</li>
-				<li>
-					<a href="https://css-houdini.rocks/">
-						<img
-							alt=""
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvElEQVQ4jbWTUQ6CMBBER/1D7oaeiXAkDT/cQq9gghfQQNrnz5LUWiqYuEnTSacz3W630j8CtFuyNifeBLgE7VNcVgyqQGdQD7qBTqBqqUkNYmbUc6KtzQfbOIIGkAc5w6Nxx1Dzlj6oCwSYgTc8GNclrwEq7M7TqXH6zrgeVEy6MA0k+WyBEhEaPCVdzcgFphh2hi+SHnH6uSL6xUW0uck8YxPu/YiokVrQ3Ua7ppHiVi5T3DeT3z/T2ngBYgoBM/1LzzEAAAAASUVORK5CYII="
-						/>
-						CSS Houdini Experiments - @iamvdo
-					</a>
-				</li>
-				<li>
-					<a href="https://postcss.org/">
-						<img
-							alt=""
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAC0klEQVQ4jX2TzWvcZRSFn/P+JjOZmSZtQiOBtjpOEik2iDTYmKHWgEWsjQsXgrVIoSAu3Aru/AMEXas77apYRPAjBWkpJckgGETR2homo6S0aAgEne/M7z0uJJBufFZ3cc+BC/cRe9iYGx7dUfpixEclJ1gvCNoWP9kE8M+ZjL8s3ezUdzPaHdae2fe40ng+oNsZ+Vov6gnEuPAjDnyV9ONWquSUxHHwt+WV1qIgBoC1Sm5CaXqRwOfllealPsmQgks5Ny9HhSuKLDA4uD1ZbX7qTHwf8dJ6pXAGINyboZAouSD5i8ml1mptZmS/nT4H8ZsjVdpTy41fLN92t3feECZvtjdQ+gFwtjabm8q0soXnQ9Tf5WpnGcDZ7qvAIaJmanOF05aLAQ1ZnFmvFOyV1oda6v5WmysukUnOBcGJNGhR4Prc0FFgWjAu6SKBc4JZR04KrgJna6fyhwAUwqrM8WBoD8bGen2+NOgk5gQ/YA4IXe4MFF8ur7RfJ/Cu0RjiMH1dMAQNJH9axCCr2s+V3Gk9VCwvNX+0FJHb6f7mZ8dubDYEnlhufQ+xg70lU6hXiqe7O5lUkA8hiY0WzUxsNP4BkOlBuDa1SHfvj2AdNOolDpfAC1m1yzZpCMre4a+x3rFbt3r/3Rb74IfXZkeHd7O1k7nHCIwKGtmdxh8WV2P0W4DkV0h+3zwwlPb62TSrmPT6rwU0ZrhnkwrnLWZkVi1NS3wUrH6Ed0zcydy9S9baOSH7cKYn41AwccsoKjAu1Ld1PcB9B6/jmI8xySk4D1wRQP2p4ngc8EzWretHqrT5HwyhNld4Q2ikXG2+FwBKpeYm9nCP/Jv1pwdL3uPIXu7MDx2sVYpvEzyZJflYEPVAc2XfvOwFQtxw5LvMgO/HPjF1GE2kacuzRK2F3MAnj97Y3n7Axj1WjiVp+mxETwpGZIoOdIj+1cSvJ6rddUHc3f8XdRRbOorYWF4AAAAASUVORK5CYII="
-						/>
-						PostCSS
 					</a>
 				</li>
 				<li>
