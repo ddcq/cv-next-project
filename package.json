@@ -14,7 +14,7 @@
   "dependencies": {
     "aphrodite": "^2.4.0",
     "classnames": "^2.2.6",
-    "next": "^9.5.3",
+    "next": "^9.5.5",
     "node-fetch": "^2.6.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -25,8 +25,10 @@
   "devDependencies": {
     "@types/aphrodite": "^2.0.0",
     "@types/classnames": "^2.2.10",
-    "@types/node": "^14.11.2",
-    "@types/react": "^16.9.50",
+    "@types/jquery": "^3.5.3",
+    "@types/node": "^14.11.10",
+    "@types/react": "^16.9.53",
+    "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.9",
     "@types/react-transition-group": "^4.4.0",
     "@typescript-eslint/eslint-plugin": "^4.4.1",
