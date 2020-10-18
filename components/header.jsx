@@ -1,6 +1,6 @@
-import { useCallback, useState } from "react";
-import useWindowSize from "../hooks/useWindowSize";
-import cn from "classnames";
+import cn from 'classnames';
+import React, { useState } from 'react';
+import useWindowSize from '../hooks/useWindowSize';
 /*
 var container = $(".container");
 var card_items = $(".card-inner");
@@ -48,63 +48,60 @@ $(".top-menu").on("click", "a", function () {
 });
 */
 const LINKS = [
-  {
-    href: "#about-card",
-    icon: "person",
-    text: "About",
-  },
-  {
-    href: "#resume-card",
-    icon: "android-list",
-    text: "Resume",
-  },
-  // {
-  //   href: "#works-card",
-  //   icon: "paintbrush",
-  //   text: "Works",
-  // },
-  // {
-  //   href: "#blog-card",
-  //   icon: "chatbox-working",
-  //   text: "Works",
-  // },
-  {
-    href: "#contacts-card",
-    icon: "at",
-    text: "Contact",
-  },
+	{
+		href: '#about-card',
+		icon: 'person',
+		text: 'About',
+	},
+	{
+		href: '#resume-card',
+		icon: 'android-list',
+		text: 'Resume',
+	},
+	// {
+	//   href: "#works-card",
+	//   icon: "paintbrush",
+	//   text: "Works",
+	// },
+	// {
+	//   href: "#blog-card",
+	//   icon: "chatbox-working",
+	//   text: "Works",
+	// },
+	{
+		href: '#contacts-card',
+		icon: 'at',
+		text: 'Contact',
+	},
 ];
 
 const Header = ({ onMenuBtnClick, onActiveCard }) => {
-  const { width } = useWindowSize();
-  const [activeCard, setActiveCard] = useState(LINKS[0].href);
-  const handleClick = useCallback((e) => {
-    const id = $(e.target).closest("a").attr("href");
-    const card_item = $(id);
-    
-    if (width < 1024) {
-      const h = parseFloat(card_item.offset().top);
-      $("body,html").animate({ scrollTop: h - 76 }, 800);
-    } else {
-      if (activeCard !== id) {
-        setActiveCard(id)
-        onActiveCard(id)
-      }
-    }
+	const { width } = useWindowSize();
+	const [activeCard, setActiveCard] = useState(LINKS[0].href);
+	const handleClick = (e, id) => {
+		//const card_item = $(id);
 
-    var menu_items = $(".top-menu li");
-    var d_lnk = $(".lnks .lnk.discover");
+		if (width < 1024) {
+			//const h = parseFloat(card_item.offset().top);
+			//$("body,html").animate({ scrollTop: h - 76 }, 800);
+		} else {
+			if (activeCard !== id) {
+				setActiveCard(id);
+				onActiveCard(id);
+			}
+		}
 
-    console.log(e);
-  });
-  return (
-    <header className="header">
-      {/* header profile */}
-      <div className="profile">
-        <div className="title">Denis Declercq</div>
-        <div className="subtitle">Fullstack Devoloper React.js / Node.js</div>
+		// var menu_items = $(".top-menu li");
+		// var d_lnk = $(".lnks .lnk.discover");
+	};
+	return (
+		<header className="header">
+			{/* header profile */}
+			<div className="profile">
+				<div className="title">Denis Declercq</div>
+				<div className="subtitle">Fullstack Devoloper React.js / Node.js</div>
 
-        {/*
+				{/*
 			  <div className="subtitle subtitle-typed">
                 <div className="typing-title">
                   <p>Fullstack Devoloper React.js / Node.js</p>
@@ -113,28 +110,28 @@ const Header = ({ onMenuBtnClick, onActiveCard }) => {
                 </div>
 			  </div>
 			  */}
-      </div>
+			</div>
 
-      {/* menu btn */}
-      <a href="#" className="menu-btn" onClick={onMenuBtnClick}>
-        <span></span>
-      </a>
+			{/* menu btn */}
+			<button className="menu-btn" onClick={onMenuBtnClick}>
+				<span></span>
+			</button>
 
-      {/* menu */}
-      <div className="top-menu">
-        <ul>
-          {LINKS.map((l) => (
-            <li key={l.text} className={cn({ active: activeCard === l })}>
-              <a href={l.href} onClick={handleClick}>
-                <span className={"icon ion-" + l.icon}></span>
-                <span className="link">{l.text}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </header>
-  );
+			{/* menu */}
+			<div className="top-menu">
+				<ul>
+					{LINKS.map((l) => (
+						<li key={l.text} className={cn({ active: activeCard === l })}>
+							<a href={l.href} onClick={(e) => handleClick(e, l.href)}>
+								<span className={'icon ion-' + l.icon}></span>
+								<span className="link">{l.text}</span>
+							</a>
+						</li>
+					))}
+				</ul>
+			</div>
+		</header>
+	);
 };
 
 export default Header;
