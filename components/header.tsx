@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import React, { FunctionComponent, useState } from 'react';
-import useWindowSize from '../hooks/useWindowSize';
+import useWindowSize from '../hooks/use-window-size';
 /*
 var container = $(".container");
 var card_items = $(".card-inner");

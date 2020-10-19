@@ -10,6 +10,8 @@ import Header from '../components/header';
 import MainSidebar from '../components/main-sidebar';
 import Preloader from '../components/preloader';
 import Started from '../components/started';
+import useScreenInfo from '../hooks/use-screen-info';
+import useWindowSize from '../hooks/use-window-size';
 import { showSidebar } from '../redux/actions';
 
 declare global {
@@ -67,6 +69,7 @@ export default function Home(): ReactElement {
 		}),
 		[]
 	);
+	const { isDesktop } = useScreenInfo();
 	return (
 		<div className="page new-skin">
 			<Preloader />
@@ -84,7 +87,7 @@ export default function Home(): ReactElement {
 						key={o.n}
 						in={o.n === activeCard}
 						timeout={500}
-						unmountOnExit
+						unmountOnExit={isDesktop}
 						classNames={TRANSITION_CLASSNAMES}
 					>
 						<div className="card-inner active" id={o.n}>
