@@ -1,7 +1,7 @@
-import React, { FunctionComponent, useCallback, useRef, useState } from 'react';
-import { StyleSheet, css } from 'aphrodite/no-important';
-import useEventListener from '../hooks/useEventListener';
+import { css, StyleSheet } from 'aphrodite/no-important';
+import React, { FunctionComponent, useCallback, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
+import useEventListener from '../hooks/useEventListener';
 
 const styles = StyleSheet.create({
 	preloader: {

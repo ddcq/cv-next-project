@@ -18,7 +18,40 @@ const Lnk: FunctionComponent<LnkProps> = ({ href, img, text }) => (
 );
 const MainSidebar = (): JSX.Element => (
 	<Sidebar id="MainSidebar">
-		<h3>Favorites</h3>
+		<h3>Used to create this site</h3>
+		<Widget id="used-ops">
+			<WidgetTitle>DevOps</WidgetTitle>
+			<ul>
+				<Lnk
+					href="http://nodejs.org/"
+					img="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACQUlEQVQ4jX2TPWiVZxSAn/d9v597Q5IOIiWFGJBSWlDa4pShTh0dsli6FRTuqDgUOpR4K26CpY4tzdIlxMW9InTuoBAXtyYZUjW5JPfn+3l/znGwSkhvcrYD5zw853COYUrc2rjaLTuzKymY1XoSadpwZ+6D+Ojnbx7Wx2vN0aTf79vB8rMvC5m5maViRbyba1uhmrQj4FGW8cuH/3zytN/vy/8AvT+/PlfYvOekuJan7kIWO4h3hKA0tSeEhLN21zi7Vhh+ffDdH9sA5lKvl39xZevbzpx+b7AXXCpNHrscBYQQaeqAAZyzajP7XFK697d/sW6XPttbbAfFbUnm4vGRjk5qnUFUEVEjSS8O6vHt7qC7aPNcM1+Z3I/c9N53CGsQFBGl8i37o1GOklmKFpxSH1okmpMUAEgqBEkcVGNCigBYSjC5kALUQ4OeAlCUia9pYyCzlpISC2CcolZ4vdvS1nKqhZeINYbSFVD+Z2AzpQme4dCz/9qfagEgqjiXvTUoC4gamYwDqjDYb6iqcCogSEQ0UZZgo7ZxNAwheMEY8F54+WqC6skeqkodfPChjXZ272CnHqY+sAmoMTA4rBmOG4yZug01mE2R+NO/Mwc77ysu3728iJUemOuqunBmfpaPFz5CEviQCDFSte3uqG5+HzfNb49/eLwN8P56tp5sDbe+2v7rnF16gjEzPsTznbIoO3lBFB0llQ0iNz7d+3x97ce1g3d9Ux2X7y93XeVWzszPry6dPYsqd7KsmvrObwA+tTchrleiRQAAAABJRU5ErkJggg=="
+					text="Node JS"
+				/>
+				<Lnk
+					href="https://nextjs.org/"
+					text="Next.JS"
+					img="https://nextjs.org/static/favicon/favicon-16x16.png"
+				/>
+				<Lnk
+					href="https://travis-ci.com/"
+					text="Travis CI"
+					img="https://icons-for-free.com/iconfiles/png/512/vscode+icons+type+travis-1324451505484713105.png"
+				/>
+				<Lnk
+					href="https://github.com/"
+					text="Github"
+					img="https://icons-for-free.com/iconfiles/png/512/part+1+github-1320568339880199515.png"
+				/>
+			</ul>
+		</Widget>
+		<Widget id="used-react">
+			<WidgetTitle>React</WidgetTitle>
+			<ul>
+				<Lnk href="https://usehooks.com/" text="useHooks" />
+				<Lnk href="https://reactcommunity.org/react-transition-group/" text="React Transition Group" />
+			</ul>
+		</Widget>
+		<h3>Some other favorites</h3>
 		<Widget id="favorites-css">
 			<WidgetTitle>Design</WidgetTitle>
 			<ul>
@@ -49,11 +82,7 @@ const MainSidebar = (): JSX.Element => (
 		<Widget id="favorites-js">
 			<WidgetTitle>Javascript</WidgetTitle>
 			<ul>
-				<Lnk
-					href="http://nodejs.org/"
-					img="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACQUlEQVQ4jX2TPWiVZxSAn/d9v597Q5IOIiWFGJBSWlDa4pShTh0dsli6FRTuqDgUOpR4K26CpY4tzdIlxMW9InTuoBAXtyYZUjW5JPfn+3l/znGwSkhvcrYD5zw853COYUrc2rjaLTuzKymY1XoSadpwZ+6D+Ojnbx7Wx2vN0aTf79vB8rMvC5m5maViRbyba1uhmrQj4FGW8cuH/3zytN/vy/8AvT+/PlfYvOekuJan7kIWO4h3hKA0tSeEhLN21zi7Vhh+ffDdH9sA5lKvl39xZevbzpx+b7AXXCpNHrscBYQQaeqAAZyzajP7XFK697d/sW6XPttbbAfFbUnm4vGRjk5qnUFUEVEjSS8O6vHt7qC7aPNcM1+Z3I/c9N53CGsQFBGl8i37o1GOklmKFpxSH1okmpMUAEgqBEkcVGNCigBYSjC5kALUQ4OeAlCUia9pYyCzlpISC2CcolZ4vdvS1nKqhZeINYbSFVD+Z2AzpQme4dCz/9qfagEgqjiXvTUoC4gamYwDqjDYb6iqcCogSEQ0UZZgo7ZxNAwheMEY8F54+WqC6skeqkodfPChjXZ272CnHqY+sAmoMTA4rBmOG4yZug01mE2R+NO/Mwc77ysu3728iJUemOuqunBmfpaPFz5CEviQCDFSte3uqG5+HzfNb49/eLwN8P56tp5sDbe+2v7rnF16gjEzPsTznbIoO3lBFB0llQ0iNz7d+3x97ce1g3d9Ux2X7y93XeVWzszPry6dPYsqd7KsmvrObwA+tTchrleiRQAAAABJRU5ErkJggg=="
-					text="Node JS"
-				/>
+				<Lnk href="https://react-hook-form.com/" text="React Hook Form" />
 				<Lnk href="http://gruntjs.com/" text="Grunt: The JavaScript Task Runner" />
 				<Lnk href="http://bower.io/" text="BOWER: A package manager for the web" />
 				<Lnk

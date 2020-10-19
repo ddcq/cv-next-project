@@ -139,17 +139,17 @@ $(function () {
 			$('.card-inner').removeClass('fadeOutUp');
 			$('.card-inner').removeClass('animated');
 
-			$(window).on('scroll', function () {
-				var scrollPos = $(window).scrollTop();
-				$('.top-menu ul li a').each(function () {
-					var currLink = $(this);
-					var refElement = $(currLink.attr('href'));
-					if (refElement.offset().top - 76 <= scrollPos) {
-						$('.top-menu ul li').removeClass('active');
-						currLink.closest('li').addClass('active');
-					}
-				});
-			});
+			// $(window).on('scroll', function () {
+			// 	var scrollPos = $(window).scrollTop();
+			// 	$('.top-menu ul li a').each(function () {
+			// 		var currLink = $(this);
+			// 		var refElement = $(currLink.attr('href'));
+			// 		if (refElement.offset().top - 76 <= scrollPos) {
+			// 			$('.top-menu ul li').removeClass('active');
+			// 			currLink.closest('li').addClass('active');
+			// 		}
+			// 	});
+			// });
 
 			$('.card-inner .card-wrap').slimScroll({ destroy: true });
 			$('.card-inner .card-wrap').attr('style', '');
@@ -167,19 +167,19 @@ $(function () {
 		Smoothscroll
 	*/
 
-	if ((width < 1024) & $('#home-card').length) {
-		$(window).on('scroll', function () {
-			var scrollPos = $(window).scrollTop();
-			$('.top-menu ul li a').each(function () {
-				var currLink = $(this);
-				var refElement = $(currLink.attr('href'));
-				if (refElement.offset().top - 76 <= scrollPos) {
-					$('.top-menu ul li').removeClass('active');
-					currLink.closest('li').addClass('active');
-				}
-			});
-		});
-	}
+	// if ((width < 1024) & $('#home-card').length) {
+	// 	$(window).on('scroll', function () {
+	// 		var scrollPos = $(window).scrollTop();
+	// 		$('.top-menu ul li a').each(function () {
+	// 			var currLink = $(this);
+	// 			var refElement = $(currLink.attr('href'));
+	// 			if (refElement.offset().top - 76 <= scrollPos) {
+	// 				$('.top-menu ul li').removeClass('active');
+	// 				currLink.closest('li').addClass('active');
+	// 			}
+	// 		});
+	// 	});
+	// }
 
 	/*
 		slimScroll
