@@ -12,7 +12,6 @@
     "deploy": "next build && next export && git add out/ && git commit -m \"Deploy gh-pages\" && git subtree push --prefix out origin gh-pages"
   },
   "dependencies": {
-    "aphrodite": "^2.4.0",
     "classnames": "^2.2.6",
     "next": "^9.5.5",
     "node-fetch": "^2.6.1",
@@ -20,10 +19,10 @@
     "react-dom": "16.13.1",
     "react-redux": "^7.2.1",
     "react-transition-group": "^4.4.1",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "styled-components": "^5.2.0"
   },
   "devDependencies": {
-    "@types/aphrodite": "^2.0.0",
     "@types/classnames": "^2.2.10",
     "@types/jquery": "^3.5.3",
     "@types/node": "^14.11.10",
@@ -31,8 +30,10 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.9",
     "@types/react-transition-group": "^4.4.0",
+    "@types/styled-components": "^5.1.4",
     "@typescript-eslint/eslint-plugin": "^4.4.1",
     "@typescript-eslint/parser": "^4.4.1",
+    "babel-plugin-styled-components": "^1.11.1",
     "eslint": "^7.11.0",
     "eslint-config-prettier": "^6.13.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",

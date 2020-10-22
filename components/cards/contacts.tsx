@@ -1,21 +1,20 @@
 import React, { FunctionComponent } from 'react';
+import styled from 'styled-components';
 import Title from '../title';
-import { StyleSheet, css } from 'aphrodite';
 
-const styles = StyleSheet.create({
-	map: {
-		margin: '0 0 30px 0',
-		height: 240,
-	},
-	alertSuccess: {
-		display: 'none',
-	},
+const MapContainer = styled.div`
+	margin: 0 0 30px 0;
+	height: 240px;
+`;
 
-	alertSuccessP: {
-		margin: 0,
-		fontSize: 17,
-	},
-});
+const AlertSuccess = styled.div`
+	display: none;
+`;
+
+const AlertSuccessText = styled.p`
+	margin: 0px;
+	font-size: 17px;
+`;
 
 const ContactsCard: FunctionComponent = () => (
 	<div className="card-wrap">
@@ -23,9 +22,9 @@ const ContactsCard: FunctionComponent = () => (
 			<Title>Get in Touch</Title>
 			<div className="row">
 				<div className="col col-d-12 col-t-12 col-m-12 border-line-v">
-					<div className={css(styles.map)}>
+					<MapContainer>
 						<img alt="map" src="images/map.jpg" width="641px" />
-					</div>
+					</MapContainer>
 					<div className="info-list">
 						<ul>
 							<li>
@@ -83,9 +82,9 @@ const ContactsCard: FunctionComponent = () => (
 								</button>
 							</div>
 						</form>
-						<div className={css(styles.alertSuccess)}>
-							<p className={css(styles.alertSuccessP)}>Thanks, your message is sent successfully.</p>
-						</div>
+						<AlertSuccess>
+							<AlertSuccessText>Thanks, your message is sent successfully.</AlertSuccessText>
+						</AlertSuccess>
 					</div>
 				</div>
 				<div className="clear"></div>

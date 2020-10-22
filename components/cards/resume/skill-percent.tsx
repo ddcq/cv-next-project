@@ -14,7 +14,7 @@ const Skill: FunctionComponent<SkillProps> = ({ percentage, name, percent, circl
 		{percentage && (
 			<div className={cn('progress', circle && 'p' + percentage)}>
 				{percent && <div className="percentage" style={{ width: percentage + '%' }}></div>}
-				{circle && <span>{percentage} %</span>}
+				{circle && <>{percentage} %</>}
 			</div>
 		)}
 	</li>

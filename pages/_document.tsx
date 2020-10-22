@@ -1,49 +1,54 @@
-import React from 'react';
-import { StyleSheetServer } from 'aphrodite/no-important';
+import { DocumentInitialProps } from 'next/dist/next-server/lib/utils';
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
-import { DocumentInitialProps, RenderPageResult } from 'next/dist/next-server/lib/utils';
+import React from 'react';
+import { ServerStyleSheet } from 'styled-components';
 
 interface MyDocumentProps extends DocumentInitialProps {
-	css?: {
-		content: string;
-	};
-	ids?: string[];
-	html: string;
+	styles: React.ReactElement;
 }
 
 class MyDocument extends Document<MyDocumentProps> {
 	static async getInitialProps(ctx: DocumentContext): Promise<MyDocumentProps> {
-		const { renderPage } = ctx;
-		const { html, css } = StyleSheetServer.renderStatic(() => {
-			const result = renderPage() as RenderPageResult;
-			return result.html;
-		});
-		const initialProps = await Document.getInitialProps(ctx);
-		const ids = css.renderedClassNames;
-		return { ...initialProps, html, css, ids };
+		const sheet = new ServerStyleSheet();
+		const originalRenderPage = ctx.renderPage;
+
+		try {
+			ctx.renderPage = () =>
+				originalRenderPage({
+					enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
+				});
+
+			const initialProps = await Document.getInitialProps(ctx);
+			return {
+				...initialProps,
+				styles: (
+					<>
+						{initialProps.styles}
+						{sheet.getStyleElement()}
+					</>
+				),
+			};
+		} finally {
+			sheet.seal();
+		}
+		// const renderPage = ctx.renderPage;
+		// const sheet = new ServerStyleSheet();
+		// const page = renderPage((App) => (props) => sheet.collectStyles(<App {...props} />));
+		// const styleTags = sheet.getStyleElement();
+		// return { ...page, styleTags };
 	}
 
 	render(): JSX.Element {
-		/* Make sure to use data-aphrodite attribute in the style tag here
-    so that aphrodite knows which style tag it's in control of when
-    the client goes to render styles. If you don't you'll get a second
-    <style> tag */
-		const { css, ids } = this.props;
 		return (
 			<Html>
-				<Head>{css && <style data-aphrodite dangerouslySetInnerHTML={{ __html: css.content }} />}</Head>
+				<Head>
+					<title>My page</title>
+					{/* Step 5: Output the styles in the head  */}
+					{this.props.styles}
+				</Head>
 				<body>
 					<Main />
 					<NextScript />
-					{ids && (
-						<script
-							dangerouslySetInnerHTML={{
-								__html: `
-                  window.__REHYDRATE_IDS = ${JSON.stringify(ids)}
-                `,
-							}}
-						/>
-					)}
 				</body>
 			</Html>
 		);
