@@ -41,11 +41,7 @@ class MyDocument extends Document<MyDocumentProps> {
 	render(): JSX.Element {
 		return (
 			<Html>
-				<Head>
-					<title>My page</title>
-					{/* Step 5: Output the styles in the head  */}
-					{this.props.styles}
-				</Head>
+				<Head>{this.props.styles}</Head>
 				<body>
 					<Main />
 					<NextScript />
