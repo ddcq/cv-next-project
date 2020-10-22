@@ -1,118 +1,126 @@
 import React, { FunctionComponent } from 'react';
-import { StyleSheet, css } from 'aphrodite';
+import styled from 'styled-components';
 
-const styles = StyleSheet.create({
-	backgroundGradient: {
-		background: 'linear-gradient(to bottom right, #50a3a2 0%, #78cc6d 100%)',
-		position: 'fixed',
-		overflow: 'hidden',
-		top: 0,
-		left: 0,
-		width: '100%',
-		height: '100%',
-	},
-	bgBubbles: {
-		position: 'absolute',
-		top: 0,
-		left: 0,
-		width: '100%',
-		height: '100%',
-	},
+const BackgroundGradient = styled.div`
+	background: #50a3a2;
+	background: -webkit-linear-gradient(top left, #50a3a2 0%, #78cc6d 100%);
+	background: linear-gradient(to bottom right, #50a3a2 0%, #78cc6d 100%);
+	position: fixed;
+	overflow: hidden;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+`;
 
-	bgBubblesLi: {
-		position: 'absolute',
-		listStyle: 'none',
-		display: 'block',
-		width: 80,
-		height: 80,
-		backgroundColor: 'rgba(255, 255, 255, 0.1)',
-		bottom: -320,
-		animation: 'square 50s infinite',
-		transitionTimingFunction: 'linear',
-		borderRadius: 4,
-	},
+const Bubbles = styled.ul`
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+`;
 
-	bgBubblesLi1: {
-		left: '10%',
-	},
-
-	bgBubblesLi2: {
-		left: '20%',
-		width: 160,
-		height: 160,
-		animationDelay: '2s',
-		animationDuration: '34s',
-	},
-
-	bgBubblesLi3: {
-		left: '25%',
-		animationDelay: '4s',
-	},
-
-	bgBubblesLi4: {
-		left: '40%',
-		width: 120,
-		height: 120,
-		animationDuration: '44s',
-	},
-
-	bgBubblesLi5: {
-		left: '70%',
-	},
-
-	bgBubblesLi6: {
-		left: '80%',
-		width: 240,
-		height: 240,
-		animationDelay: '3s',
-	},
-
-	bgBubblesLi7: {
-		left: '32%',
-		width: 320,
-		height: 320,
-		animationDelay: '7s',
-	},
-
-	bgBubblesLi8: {
-		left: '55%',
-		width: 40,
-		height: 40,
-		animationDelay: '15s',
-		animationDuration: '80s',
-	},
-
-	bgBubblesLi9: {
-		left: '25%',
-		width: 20,
-		height: 20,
-		animationDelay: '2s',
-		animationDuration: '80s',
-	},
-
-	bgBubblesLi10: {
-		left: '90%',
-		width: 320,
-		height: 320,
-		animationDelay: '22s',
-	},
-});
+const Item = styled.li`
+	position: absolute;
+	list-style: none;
+	display: block;
+	width: 80px;
+	height: 80px;
+	background-color: rgba(255, 255, 255, 0.1);
+	bottom: -320px;
+	-webkit-animation: square 50s infinite;
+	animation: square 50s infinite;
+	-webkit-transition-timing-function: linear;
+	transition-timing-function: linear;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	}
+	&:nth-child(1) {
+		left: 10%;
+	}
+	&:nth-child(2) {
+		left: 20%;
+		width: 160px;
+		height: 160px;
+		-webkit-animation-delay: 2s;
+		animation-delay: 2s;
+		-webkit-animation-duration: 34s;
+		animation-duration: 34s;
+	}
+	&:nth-child(3) {
+		left: 25%;
+		-webkit-animation-delay: 4s;
+		animation-delay: 4s;
+	}
+	&:nth-child(4) {
+		left: 40%;
+		width: 120px;
+		height: 120px;
+		-webkit-animation-duration: 44s;
+		animation-duration: 44s;
+	}
+	&:nth-child(5) {
+		left: 70%;
+	}
+	&:nth-child(6) {
+		left: 80%;
+		width: 240px;
+		height: 240px;
+		-webkit-animation-delay: 3s;
+		animation-delay: 3s;
+	}
+	&:nth-child(7) {
+		left: 32%;
+		width: 320px;
+		height: 320px;
+		-webkit-animation-delay: 7s;
+		animation-delay: 7s;
+	}
+	&:nth-child(8) {
+		left: 55%;
+		width: 40px;
+		height: 40px;
+		-webkit-animation-delay: 15s;
+		animation-delay: 15s;
+		-webkit-animation-duration: 80s;
+		animation-duration: 80s;
+	}
+	&:nth-child(9) {
+		left: 25%;
+		width: 20px;
+		height: 20px;
+		-webkit-animation-delay: 2s;
+		animation-delay: 2s;
+		-webkit-animation-duration: 80s;
+		animation-durat
+	}
+	&:nth-child(10) {
+		left: 90%;
+		width: 320px;
+		height: 320px;
+		-webkit-animation-delay: 22s;
+		animation-delay: 22s;
+	}
+`;
 
 const Background: FunctionComponent = () => (
-	<div className={css(styles.backgroundGradient)}>
-		<ul className={css(styles.bgBubbles)}>
-			<li className={css(styles.bgBubblesLi, styles.bgBubblesLi1)} />
-			<li className={css(styles.bgBubblesLi, styles.bgBubblesLi2)} />
-			<li className={css(styles.bgBubblesLi, styles.bgBubblesLi3)} />
-			<li className={css(styles.bgBubblesLi, styles.bgBubblesLi4)} />
-			<li className={css(styles.bgBubblesLi, styles.bgBubblesLi5)} />
-			<li className={css(styles.bgBubblesLi, styles.bgBubblesLi6)} />
-			<li className={css(styles.bgBubblesLi, styles.bgBubblesLi7)} />
-			<li className={css(styles.bgBubblesLi, styles.bgBubblesLi8)} />
-			<li className={css(styles.bgBubblesLi, styles.bgBubblesLi9)} />
-			<li className={css(styles.bgBubblesLi, styles.bgBubblesLi10)} />
-		</ul>
-	</div>
+	<BackgroundGradient>
+		<Bubbles>
+			<Item />
+			<Item />
+			<Item />
+			<Item />
+			<Item />
+			<Item />
+			<Item />
+			<Item />
+			<Item />
+			<Item />
+		</Bubbles>
+	</BackgroundGradient>
 );
 
 export default Background;

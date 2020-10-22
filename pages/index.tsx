@@ -1,7 +1,7 @@
-import { css, StyleSheet } from 'aphrodite';
-import React, { ReactElement, useMemo, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
+import styled from 'styled-components';
 import Background from '../components/background';
 import AboutMe from '../components/cards/about-me';
 import ContactsCard from '../components/cards/contacts';
@@ -11,43 +11,28 @@ import MainSidebar from '../components/main-sidebar';
 import Preloader from '../components/preloader';
 import Started from '../components/started';
 import useScreenInfo from '../hooks/use-screen-info';
-import useWindowSize from '../hooks/use-window-size';
 import { showSidebar } from '../redux/actions';
 
-declare global {
-	interface Window {
-		__REHYDRATE_IDS: string[];
+const ActiveCardItem = styled.div`
+	&.slide-enter {
+		transform: translateX(-500px);
+		opacity: 0;
 	}
-}
-
-const styles = StyleSheet.create({
-	slideEnter: {
-		transform: 'translateX(-500px)',
-		opacity: 0,
-	},
-	slideEnterActive: {
-		transform: 'translateX(0)',
-		opacity: 1,
-		transition: 'all 500ms',
-	},
-	slideExit: {
-		transform: 'translateX(0)',
-		opacity: 1,
-	},
-
-	slideExitActive: {
-		transform: 'translateX(-500px)',
-		opacity: 0,
-		transition: 'all 500ms linear',
-	},
-});
-
-// Rehydrate to ensure that the client doesn't duplicate styles
-// It has to execute before any code that defines styles
-// '__REHYDRATE_IDS' is set in '_document.js'
-if (typeof window !== 'undefined') {
-	StyleSheet.rehydrate(window.__REHYDRATE_IDS);
-}
+	&.slide-enter-active {
+		transform: translateX(0);
+		opacity: 1;
+		transition: all 500ms;
+	}
+	&.slide-exit {
+		transform: translateX(0);
+		opacity: 1;
+	}
+	&.slide-exit-active {
+		transform: translateX(-500px);
+		opacity: 0;
+		transition: all 500ms linear;
+	}
+`;
 
 const CARDS = [
 	{ n: 'about-card', c: <AboutMe /> },
@@ -60,15 +45,6 @@ const CARDS = [
 export default function Home(): ReactElement {
 	const dispatch = useDispatch();
 	const [activeCard, setActiveCard] = useState('about-card');
-	const TRANSITION_CLASSNAMES = useMemo(
-		() => ({
-			enter: css(styles.slideEnter),
-			enterActive: css(styles.slideEnterActive),
-			exit: css(styles.slideExit),
-			exitActive: css(styles.slideExitActive),
-		}),
-		[]
-	);
 	const { isDesktop } = useScreenInfo();
 	return (
 		<div className="page new-skin">
@@ -88,11 +64,11 @@ export default function Home(): ReactElement {
 						in={o.n === activeCard}
 						timeout={500}
 						unmountOnExit={isDesktop}
-						classNames={TRANSITION_CLASSNAMES}
+						classNames="slide"
 					>
-						<div className="card-inner active" id={o.n}>
+						<ActiveCardItem className="card-inner active" id={o.n}>
 							{o.c}
-						</div>
+						</ActiveCardItem>
 					</CSSTransition>
 				))}
 			</div>
