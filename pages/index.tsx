@@ -47,7 +47,7 @@ export default function Home(): ReactElement {
 	const [activeCard, setActiveCard] = useState('about-card');
 	const { isDesktop } = useScreenInfo();
 	return (
-		<div className="page new-skin">
+		<div className="page">
 			<Preloader />
 			<Background />
 			<div className="container opened">
@@ -58,19 +58,19 @@ export default function Home(): ReactElement {
 					}}
 				/>
 				<Started />
-				{CARDS.map((o) => (
-					<CSSTransition
-						key={o.n}
-						in={o.n === activeCard}
-						timeout={500}
-						unmountOnExit={isDesktop}
-						classNames="slide"
-					>
-						<ActiveCardItem className="card-inner active" id={o.n}>
+				{CARDS.map((o) =>
+					isDesktop ? (
+						<CSSTransition key={o.n} in={o.n === activeCard} timeout={500} unmountOnExit classNames="slide">
+							<ActiveCardItem className="card-inner active" id={o.n}>
+								{o.c}
+							</ActiveCardItem>
+						</CSSTransition>
+					) : (
+						<ActiveCardItem className="card-inner active" id={o.n} key={o.n}>
 							{o.c}
 						</ActiveCardItem>
-					</CSSTransition>
-				))}
+					)
+				)}
 			</div>
 			<MainSidebar />
 			<div id="sidebar-container" />
