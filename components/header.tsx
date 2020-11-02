@@ -1,4 +1,3 @@
-import cn from 'classnames';
 import React, { FunctionComponent, useState } from 'react';
 import styled from 'styled-components';
 import useWindowSize from '../hooks/use-window-size';
