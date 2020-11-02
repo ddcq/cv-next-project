@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useState } from 'react';
 import styled from 'styled-components';
 import useWindowSize from '../hooks/use-window-size';
+import CARDS from '../model/cards';
 
 const HeaderContainer = styled.header`
 	margin-right: 8px;
@@ -278,41 +279,13 @@ const ProfileSubtitle = styled.div`
 	overflow: hidden;
 `;
 
-const LINKS = [
-	{
-		href: '#about-card',
-		icon: 'person',
-		text: 'About',
-	},
-	{
-		href: '#resume-card',
-		icon: 'android-list',
-		text: 'Resume',
-	},
-	// {
-	//   href: "#works-card",
-	//   icon: "paintbrush",
-	//   text: "Works",
-	// },
-	// {
-	//   href: "#blog-card",
-	//   icon: "chatbox-working",
-	//   text: "Works",
-	// },
-	{
-		href: '#contacts-card',
-		icon: 'at',
-		text: 'Contact',
-	},
-];
-
 type HeaderProps = {
 	onMenuBtnClick: () => void;
 	onActiveCard: (id: string) => void;
 };
 const Header: FunctionComponent<HeaderProps> = ({ onMenuBtnClick, onActiveCard }) => {
 	const { width = 0 } = useWindowSize();
-	const [activeCard, setActiveCard] = useState(LINKS[0].href);
+	const [activeCard, setActiveCard] = useState(CARDS[0].href);
 	const handleClick = (id: string) => {
 		//const card_item = $(id);
 
@@ -349,7 +322,7 @@ const Header: FunctionComponent<HeaderProps> = ({ onMenuBtnClick, onActiveCard }
 			</MenuBtn>
 			<TopMenu>
 				<MenuItems>
-					{LINKS.map((l) => (
+					{CARDS.map((l) => (
 						<MenuItem key={l.text} active={activeCard === l.href}>
 							<MenuItemLnk href={l.href} onClick={() => handleClick(l.href)}>
 								<MenuItemIcon className={'ion-' + l.icon} />

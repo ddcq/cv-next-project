@@ -3,14 +3,12 @@ import { useDispatch } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
 import Background from '../components/background';
-import AboutMe from '../components/cards/about-me';
-import ContactsCard from '../components/cards/contacts';
-import Resume from '../components/cards/resume';
 import Header from '../components/header';
 import MainSidebar from '../components/main-sidebar';
 import Preloader from '../components/preloader';
 import Started from '../components/started';
 import useScreenInfo from '../hooks/use-screen-info';
+import CARDS from '../model/cards';
 import { showSidebar } from '../redux/actions';
 
 const ActiveCardItem = styled.div`
@@ -33,14 +31,6 @@ const ActiveCardItem = styled.div`
 		transition: all 500ms linear;
 	}
 `;
-
-const CARDS = [
-	{ n: 'about-card', c: <AboutMe /> },
-	{ n: 'resume-card', c: <Resume /> },
-	//  { n: "works-card", c: <Works /> },
-	//  { n: "blog-card", c: <Blog />, cl: "blog" },
-	{ n: 'contacts-card', c: <ContactsCard />, cl: 'contacts' },
-];
 
 export default function Home(): ReactElement {
 	const dispatch = useDispatch();
