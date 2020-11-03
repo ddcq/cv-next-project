@@ -1,5 +1,5 @@
-import React, { ReactElement, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { ReactElement } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
 import Background from '../components/background';
@@ -10,6 +10,7 @@ import Started from '../components/started';
 import useScreenInfo from '../hooks/use-screen-info';
 import CARDS from '../model/cards';
 import { showSidebar } from '../redux/actions';
+import { selectCurrentCard } from '../redux/selectors';
 
 const ActiveCardItem = styled.div`
 	&.slide-enter {
@@ -34,23 +35,18 @@ const ActiveCardItem = styled.div`
 
 export default function Home(): ReactElement {
 	const dispatch = useDispatch();
-	const [activeCard, setActiveCard] = useState('about-card');
+	const activeCard = useSelector(selectCurrentCard);
 	const { isDesktop } = useScreenInfo();
 	return (
 		<div className="page">
 			<Preloader />
 			<Background />
 			<div className="container opened">
-				<Header
-					onMenuBtnClick={() => dispatch(showSidebar('MainSidebar'))}
-					onActiveCard={(id: string) => {
-						setActiveCard(id.substr(1));
-					}}
-				/>
+				<Header onMenuBtnClick={() => dispatch(showSidebar('MainSidebar'))} />
 				<Started />
 				{CARDS.map((o) =>
 					isDesktop ? (
-						<CSSTransition key={o.n} in={o.n === activeCard} timeout={500} unmountOnExit classNames="slide">
+						<CSSTransition key={o.n} in={o === activeCard} timeout={500} unmountOnExit classNames="slide">
 							<ActiveCardItem className="card-inner active" id={o.n}>
 								{o.c}
 							</ActiveCardItem>

@@ -1,7 +1,10 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import useWindowSize from '../hooks/use-window-size';
-import CARDS from '../model/cards';
+import CARDS, { CardType } from '../model/cards';
+import { showCard } from '../redux/actions';
+import { selectCurrentCard } from '../redux/selectors';
 
 const HeaderContainer = styled.header`
 	margin-right: 8px;
@@ -281,22 +284,20 @@ const ProfileSubtitle = styled.div`
 
 type HeaderProps = {
 	onMenuBtnClick: () => void;
-	onActiveCard: (id: string) => void;
 };
-const Header: FunctionComponent<HeaderProps> = ({ onMenuBtnClick, onActiveCard }) => {
+const Header: FunctionComponent<HeaderProps> = ({ onMenuBtnClick }) => {
 	const { width = 0 } = useWindowSize();
-	const [activeCard, setActiveCard] = useState(CARDS[0].href);
-	const handleClick = (id: string) => {
+	const activeCard: CardType = useSelector(selectCurrentCard);
+	const dispatch = useDispatch();
+	const handleClick = (id: CardType) => {
+		if (activeCard !== id) {
+			dispatch(showCard(id));
+		}
 		//const card_item = $(id);
 
 		if (width < 1024) {
 			//const h = parseFloat(card_item.offset().top);
 			//$("body,html").animate({ scrollTop: h - 76 }, 800);
-		} else {
-			if (activeCard !== id) {
-				setActiveCard(id);
-				onActiveCard(id);
-			}
 		}
 	};
 	return (
@@ -323,8 +324,8 @@ const Header: FunctionComponent<HeaderProps> = ({ onMenuBtnClick, onActiveCard }
 			<TopMenu>
 				<MenuItems>
 					{CARDS.map((l) => (
-						<MenuItem key={l.text} active={activeCard === l.href}>
-							<MenuItemLnk href={l.href} onClick={() => handleClick(l.href)}>
+						<MenuItem key={l.text} active={activeCard === l}>
+							<MenuItemLnk href={l.href} onClick={() => handleClick(l)}>
 								<MenuItemIcon className={'ion-' + l.icon} />
 								<MenuItemLinkText>{l.text}</MenuItemLinkText>
 							</MenuItemLnk>

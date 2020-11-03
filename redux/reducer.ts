@@ -1,4 +1,4 @@
-import CARDS from '../model/cards';
+import CARDS, { CardType } from '../model/cards';
 import { CHANGE_SIDEBAR_VISIBILITY, SHOW_CARD } from './action-type';
 import { ActionType } from './actions';
 
@@ -7,12 +7,12 @@ export const card = 'card';
 
 export type StateType = {
 	[sidebarVisible]?: string;
-	[card]: string;
+	[card]: CardType;
 };
 
 const INITIAL_STATE: StateType = {
 	[sidebarVisible]: undefined,
-	[card]: CARDS[0].n,
+	[card]: CARDS[0],
 };
 
 function reducer(state = INITIAL_STATE, action: ActionType): StateType {
@@ -25,7 +25,7 @@ function reducer(state = INITIAL_STATE, action: ActionType): StateType {
 		case SHOW_CARD:
 			return {
 				...state,
-				[card]: action.payload || CARDS[0].n,
+				[card]: action.payload || CARDS[0],
 			};
 	}
 	return state;
