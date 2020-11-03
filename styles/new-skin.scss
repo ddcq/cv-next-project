@@ -1109,52 +1109,6 @@ input[type="file"] {
 	}
 }
 
-/* Pricing */
-.pricing-items .pricing-item {
-	position: relative;
-	padding: 0 0 100px 0;
-}
-
-.pricing-items .pricing-item .name {
-	color: #323232;
-	font-size: 17px;
-	text-transform: none;
-}
-
-.pricing-items .pricing-item .amount .number {
-	color: #323232;
-}
-
-.pricing-items .pricing-item .amount .dollar,
-.pricing-items .pricing-item .amount .period {
-	color: #323232;
-	font-size: 16px;
-}
-
-.pricing-items .pricing-item .amount .period {
-	color: #646464;
-}
-
-.pricing-items .pricing-item .feature-list ul li {
-	margin: 10px 0;
-	font-size: 16px;
-	color: #646464;
-}
-
-.pricing-items .pricing-item .feature-list ul li:last-child {
-	margin-bottom: 0;
-	border-bottom: none;
-}
-
-.pricing-items .pricing-item .feature-list ul li strong {
-	font-size: 13px;
-	color: #323232;
-}
-
-.pricing-items .pricing-item .lnks .lnk .ion {
-	top: -2px;
-}
-
 /* Fun Fact */
 .fuct-items .fuct-item .name {
 	margin: 0;
@@ -1456,14 +1410,6 @@ ul.skills-list.list li .name {
 }
 
 .service-items .service-item .icon .fab, .service-items .service-item .icon .fas, .service-items .service-item .icon .fa {
-    font-size: 28px;
-}
-
-.pricing-items .pricing-item .icon .ion, .pricing-items .pricing-item .icon .fab, .pricing-items .pricing-item .icon .fas, .pricing-items .pricing-item .icon .fa {
-    display: block;
-}
-
-.pricing-items .pricing-item .icon .fab, .pricing-items .pricing-item .icon .fas, .pricing-items .pricing-item .icon .fa {
     font-size: 28px;
 }
 
